@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://du1ntk0aaf1ed"]
+
+[ext_resource type="Script" uid="uid://c57n00yffuvxw" path="res://room.gd" id="1_88gup"]
+[ext_resource type="PackedScene" uid="uid://bjc21pdbsh52d" path="res://dirt.tscn" id="2_4o3f6"]
+[ext_resource type="Script" uid="uid://w0t5orfnutms" path="res://room_editor.gd" id="2_bisa2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gv5m4"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_f3sb7"]
+
+[node name="Room" type="Node3D"]
+script = ExtResource("1_88gup")
+dirt_scene = ExtResource("2_4o3f6")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D_floor" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_gv5m4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("BoxMesh_f3sb7")
+
+[node name="Editor" type="Node" parent="." node_paths=PackedStringArray("room", "mesh")]
+script = ExtResource("2_bisa2")
+room = NodePath("..")
+mesh = NodePath("../MeshInstance3D")

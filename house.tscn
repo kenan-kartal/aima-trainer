@@ -1,0 +1,262 @@
+[gd_scene load_steps=9 format=3 uid="uid://cu85y2tyyw2ab"]
+
+[ext_resource type="PackedScene" uid="uid://du1ntk0aaf1ed" path="res://room.tscn" id="1_hfkix"]
+[ext_resource type="Script" uid="uid://fe4qx81ovarw" path="res://house.gd" id="1_o1325"]
+[ext_resource type="PackedScene" uid="uid://csqrprf0q87r1" path="res://vacuum.tscn" id="2_metfq"]
+[ext_resource type="Script" uid="uid://d3lgxaryx0pvy" path="res://vacuum_controller.gd" id="3_6syyc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6syyc"]
+albedo_color = Color(0.0784314, 0.0784314, 0.784314, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_metfq"]
+albedo_color = Color(0.784314, 0.0784314, 0.0784314, 1)
+
+[sub_resource type="GDScript" id="GDScript_vy7fe"]
+script/source = "extends Label
+
+func _on_same_slider_value_changed(value: float) -> void:
+	text = \"%.f%%\" % (value * 100)
+"
+
+[sub_resource type="GDScript" id="GDScript_o1325"]
+script/source = "extends Label
+
+func _on_opp_slider_value_changed(value: float) -> void:
+	text = \"%.f%%\" % (value * 100)
+"
+
+[node name="House" type="Node3D"]
+script = ExtResource("1_o1325")
+
+[node name="Lights" type="Node" parent="."]
+
+[node name="KeyLight" type="DirectionalLight3D" parent="Lights"]
+transform = Transform3D(0.176018, 0.828144, -0.532161, -0.246488, 0.560458, 0.790652, 0.953027, -0.0079973, 0.302778, -6.42162, 10, 8.9626)
+shadow_enabled = true
+sky_mode = 1
+
+[node name="FillLight" type="DirectionalLight3D" parent="Lights"]
+transform = Transform3D(0.644544, -0.252448, 0.721688, -0.475817, 0.606407, 0.637078, -0.598466, -0.754016, 0.270737, 9.90696, 10, 9.79555)
+light_color = Color(0.803015, 0.893683, 0.992977, 1)
+light_energy = 0.3
+shadow_enabled = true
+sky_mode = 1
+
+[node name="BackLight" type="DirectionalLight3D" parent="Lights"]
+transform = Transform3D(-0.768238, -0.639225, 0.0346744, -0.475817, 0.606407, 0.637078, -0.428263, 0.472929, -0.770019, 0.398092, 10, -9.80233)
+light_color = Color(0.930463, 0.883144, 0.716864, 1)
+light_energy = 0.15
+shadow_enabled = true
+sky_mode = 1
+
+[node name="Room_left" parent="." instance=ExtResource("1_hfkix")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 0, 0)
+mat = SubResource("StandardMaterial3D_6syyc")
+
+[node name="Room_right" parent="." instance=ExtResource("1_hfkix")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5, 0, 0)
+mat = SubResource("StandardMaterial3D_metfq")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.541151, 0.840926, 0, -0.840926, 0.541151, 0, 10, 6.11998)
+
+[node name="Vacuum" parent="." instance=ExtResource("2_metfq")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -5, 0.5, 0)
+
+[node name="VacuumController" type="Node" parent="."]
+script = ExtResource("3_6syyc")
+
+[node name="Controls" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 19.0
+offset_top = 9.0
+offset_right = 59.0
+offset_bottom = 49.0
+
+[node name="Label" type="Label" parent="Controls"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 3.0
+offset_right = 65.0
+offset_bottom = 26.0
+text = "Controls"
+
+[node name="SeedLabel" type="Label" parent="Controls"]
+layout_mode = 0
+offset_top = 36.0
+offset_right = 216.0
+offset_bottom = 59.0
+text = "Seed"
+
+[node name="SeedEdit" type="LineEdit" parent="Controls/SeedLabel"]
+layout_mode = 0
+offset_left = 53.0
+offset_top = -4.0
+offset_right = 121.562
+offset_bottom = 27.0
+text = "0"
+placeholder_text = "seed"
+
+[node name="SameLabel" type="Label" parent="Controls"]
+layout_mode = 0
+offset_top = 68.0
+offset_right = 216.0
+offset_bottom = 91.0
+text = "Same room mess up chance"
+
+[node name="SameSlider" type="HSlider" parent="Controls/SameLabel"]
+layout_mode = 0
+offset_top = 21.0
+offset_right = 178.0
+offset_bottom = 37.0
+max_value = 1.0
+step = 0.05
+value = 0.1
+
+[node name="SameValLabel" type="Label" parent="Controls/SameLabel/SameSlider"]
+layout_mode = 0
+offset_left = 184.0
+offset_top = -4.0
+offset_right = 237.0
+offset_bottom = 19.0
+text = "10%"
+script = SubResource("GDScript_vy7fe")
+
+[node name="OppLabel" type="Label" parent="Controls"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 113.0
+offset_right = 245.0
+offset_bottom = 136.0
+text = "Opposite room mess up chance"
+
+[node name="OppSlider" type="HSlider" parent="Controls/OppLabel"]
+layout_mode = 0
+offset_top = 21.0
+offset_right = 178.0
+offset_bottom = 37.0
+max_value = 1.0
+step = 0.05
+value = 0.5
+
+[node name="OppValLabel" type="Label" parent="Controls/OppLabel/OppSlider"]
+layout_mode = 0
+offset_left = 186.0
+offset_top = -3.0
+offset_right = 239.0
+offset_bottom = 20.0
+text = "50%"
+script = SubResource("GDScript_o1325")
+
+[node name="StartButton" type="Button" parent="Controls"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 232.0
+offset_right = 60.0
+offset_bottom = 263.0
+text = "START"
+
+[node name="StopButton" type="Button" parent="Controls"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 232.0
+offset_right = 130.0
+offset_bottom = 263.0
+disabled = true
+text = "STOP"
+
+[node name="MoveCostLabel" type="Label" parent="Controls"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 159.0
+offset_right = 218.0
+offset_bottom = 182.0
+text = "Move cost"
+
+[node name="MoveCostEdit" type="LineEdit" parent="Controls/MoveCostLabel"]
+layout_mode = 0
+offset_left = 92.0
+offset_top = -3.0
+offset_right = 160.562
+offset_bottom = 28.0
+text = "20"
+placeholder_text = "cost"
+
+[node name="SuckCostLabel" type="Label" parent="Controls"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 195.0
+offset_right = 219.0
+offset_bottom = 218.0
+text = "Suck cost"
+
+[node name="SuckCostEdit" type="LineEdit" parent="Controls/SuckCostLabel"]
+layout_mode = 0
+offset_left = 92.0
+offset_top = -3.0
+offset_right = 160.562
+offset_bottom = 28.0
+text = "5"
+placeholder_text = "cost"
+
+[node name="Performance" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="Label" type="Label" parent="Performance"]
+layout_mode = 0
+offset_left = -94.0
+offset_top = 19.0
+offset_right = 7.0
+offset_bottom = 42.0
+text = "Performance"
+
+[node name="TurnLabel" type="Label" parent="Performance"]
+layout_mode = 0
+offset_left = -137.0
+offset_top = 49.0
+offset_right = 4.0
+offset_bottom = 72.0
+text = "Turns Completed: 0"
+
+[node name="CostLabel" type="Label" parent="Performance"]
+layout_mode = 0
+offset_left = -136.0
+offset_top = 75.0
+offset_right = 5.0
+offset_bottom = 98.0
+text = "Total Cost: 0"
+
+[node name="LeftDirtyLabel" type="Label" parent="Performance"]
+layout_mode = 0
+offset_left = -136.0
+offset_top = 98.0
+offset_right = 5.0
+offset_bottom = 121.0
+text = "Left Dirty For: 0"
+
+[node name="RightDirtyLabel" type="Label" parent="Performance"]
+layout_mode = 0
+offset_left = -135.0
+offset_top = 122.0
+offset_right = 6.0
+offset_bottom = 145.0
+text = "Right Dirty For: 0"
+
+[connection signal="moved_left" from="Vacuum" to="." method="_on_vacuum_moved_left"]
+[connection signal="moved_right" from="Vacuum" to="." method="_on_vacuum_moved_right"]
+[connection signal="sucked" from="Vacuum" to="." method="_on_vacuum_sucked"]
+[connection signal="act_move_left" from="VacuumController" to="." method="_on_vacuum_controller_act_move_left"]
+[connection signal="act_move_right" from="VacuumController" to="." method="_on_vacuum_controller_act_move_right"]
+[connection signal="act_suck" from="VacuumController" to="." method="_on_vacuum_controller_act_suck"]
+[connection signal="perceive_environment" from="VacuumController" to="." method="_on_vacuum_controller_perceive_environment"]
+[connection signal="value_changed" from="Controls/SameLabel/SameSlider" to="Controls/SameLabel/SameSlider/SameValLabel" method="_on_same_slider_value_changed"]
+[connection signal="value_changed" from="Controls/OppLabel/OppSlider" to="Controls/OppLabel/OppSlider/OppValLabel" method="_on_opp_slider_value_changed"]
+[connection signal="pressed" from="Controls/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Controls/StopButton" to="." method="_on_stop_button_pressed"]

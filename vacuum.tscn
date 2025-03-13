@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://csqrprf0q87r1"]
+
+[ext_resource type="Script" uid="uid://566exg8rl8nt" path="res://vacuum.gd" id="1_y3ds8"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_osgbs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y3ds8"]
+albedo_color = Color(0.645258, 0.726273, 0.7388, 1)
+metallic = 0.65
+metallic_specular = 0.39
+
+[node name="Vacuum" type="Node3D"]
+script = ExtResource("1_y3ds8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("PrismMesh_osgbs")
+surface_material_override/0 = SubResource("StandardMaterial3D_y3ds8")
