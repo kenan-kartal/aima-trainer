@@ -6,6 +6,7 @@ signal act_move_left
 signal act_suck
 
 ### Updated by perceive()
+### Updates the perception for the current room
 var room_position: String # "left" or "right"
 var room_is_dirty: bool
 ###
@@ -32,7 +33,8 @@ func perceive():
 	perceive_environment.emit()
 
 func agent_program():
-	blind_agent()
+	#blind_agent()
+	reflex_agent()
 
 func blind_agent():
 	if (cleaned_current):
@@ -46,3 +48,12 @@ func blind_agent():
 	else:
 		suck()
 		cleaned_current = true
+
+func reflex_agent():
+	perceive()
+	if (room_is_dirty):
+		suck()
+	elif (room_position == "left"):
+		move_right()
+	else:
+		move_left()
