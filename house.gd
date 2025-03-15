@@ -122,6 +122,10 @@ func start():
 	room_left.reset()
 	room_right.reset()
 	seed($Controls/SeedLabel/SeedEdit.text.hash())
+	$Performance/LeftDirtyLabel.text = "Left Dirty For: %d" % left_dirty_count
+	$Performance/RightDirtyLabel.text = "Right Dirty For: %d" % right_dirty_count
+	$Performance/TurnLabel.text = "Turns Completed: %d" % completed_turns
+	$Performance/CostLabel.text = "Total Cost: %.2f" % total_cost
 
 func stop():
 	is_running = false
