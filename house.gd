@@ -20,6 +20,10 @@ var completed_turns: int = 0
 var total_cost: float = 0
 var right_dirty_count: int = 0
 var left_dirty_count: int = 0
+var agent_type: String = "blind"
+
+func _ready() -> void:
+	$Controls/AgentTypeLabel/AgentTypeList.select(0)
 
 func _process(delta: float) -> void:
 	if (!is_running):
@@ -104,6 +108,15 @@ func _on_stop_button_pressed() -> void:
 	$Controls/StopButton.disabled = true
 	stop()
 
+func _on_agent_type_list_item_selected(index: int) -> void:
+	match index:
+		1:
+			agent_type = "reflex"
+		2:
+			agent_type = "table"
+		_:
+			agent_type = "blind"
+
 func start():
 	is_running = true
 	state = State.VacuumUpdate
@@ -119,6 +132,7 @@ func start():
 	left_dirty_count = 0
 	vacuum.reset()
 	vacuum_controller.reset()
+	vacuum_controller.set_agent_type(agent_type)
 	room_left.reset()
 	room_right.reset()
 	seed($Controls/SeedLabel/SeedEdit.text.hash())

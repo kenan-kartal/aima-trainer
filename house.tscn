@@ -151,18 +151,18 @@ script = SubResource("GDScript_o1325")
 
 [node name="StartButton" type="Button" parent="Controls"]
 layout_mode = 0
-offset_left = 3.0
-offset_top = 232.0
-offset_right = 60.0
-offset_bottom = 263.0
+offset_left = 5.0
+offset_top = 363.0
+offset_right = 62.0
+offset_bottom = 394.0
 text = "START"
 
 [node name="StopButton" type="Button" parent="Controls"]
 layout_mode = 0
-offset_left = 73.0
-offset_top = 232.0
-offset_right = 130.0
-offset_bottom = 263.0
+offset_left = 75.0
+offset_top = 363.0
+offset_right = 132.0
+offset_bottom = 394.0
 disabled = true
 text = "STOP"
 
@@ -199,6 +199,24 @@ offset_right = 160.562
 offset_bottom = 28.0
 text = "5"
 placeholder_text = "cost"
+
+[node name="AgentTypeLabel" type="Label" parent="Controls"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 228.0
+offset_right = 95.0
+offset_bottom = 251.0
+text = "Agent Type"
+
+[node name="AgentTypeList" type="ItemList" parent="Controls/AgentTypeLabel"]
+layout_mode = 0
+offset_top = 29.0
+offset_right = 157.0
+offset_bottom = 123.0
+item_count = 3
+item_0/text = "Blind"
+item_1/text = "Reflex Based"
+item_2/text = "Table Driven"
 
 [node name="Performance" type="Control" parent="."]
 layout_mode = 3
@@ -260,3 +278,4 @@ text = "Right Dirty For: 0"
 [connection signal="value_changed" from="Controls/OppLabel/OppSlider" to="Controls/OppLabel/OppSlider/OppValLabel" method="_on_opp_slider_value_changed"]
 [connection signal="pressed" from="Controls/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Controls/StopButton" to="." method="_on_stop_button_pressed"]
+[connection signal="item_selected" from="Controls/AgentTypeLabel/AgentTypeList" to="." method="_on_agent_type_list_item_selected"]

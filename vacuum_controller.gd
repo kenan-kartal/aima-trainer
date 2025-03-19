@@ -11,6 +11,8 @@ var room_position: String # "left" or "right"
 var room_is_dirty: bool
 ###
 
+var agent_type: String = "blind" # "blind", "reflex", "table"
+
 ### Blind agent
 var guessed_room_position: String = "left"
 var cleaned_current: bool = false
@@ -142,6 +144,9 @@ func reset():
 	guessed_room_position = "left"
 	cleaned_current = false
 
+func set_agent_type(type: String):
+	agent_type = type
+
 func move_right():
 	act_move_right.emit()
 
@@ -155,9 +160,13 @@ func perceive():
 	perceive_environment.emit()
 
 func agent_program():
-	#blind_agent()
-	#reflex_agent()
-	table_driven_agent()
+	match agent_type:
+		"blind":
+			blind_agent()
+		"reflex":
+			reflex_agent()
+		"table":
+			table_driven_agent()
 
 func blind_agent():
 	if (cleaned_current):
