@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://csqrprf0q87r1"]
 
-[ext_resource type="Script" uid="uid://566exg8rl8nt" path="res://vacuum.gd" id="1_y3ds8"]
+[ext_resource type="Script" uid="uid://566exg8rl8nt" path="res://ch2-intelligent-agents/vacuum.gd" id="1_y3ds8"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_osgbs"]
 

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="AIMA Demo"
-run/main_scene="uid://cu85y2tyyw2ab"
+run/main_scene="uid://bd88li2tnfu0t"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 

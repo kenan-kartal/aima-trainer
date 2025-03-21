@@ -117,6 +117,9 @@ func _on_agent_type_list_item_selected(index: int) -> void:
 		_:
 			agent_type = "blind"
 
+func _on_back_to_scene_selector_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://main.tscn")
+
 func start():
 	is_running = true
 	state = State.VacuumUpdate
