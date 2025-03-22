@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dapgasx0m3uil"]
+
+[ext_resource type="Material" uid="uid://brsfygtpilna4" path="res://materials/black.tres" id="1_100ig"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xjg4y"]
+size = Vector3(2, 0.1, 0.4)
+
+[node name="Wall" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+mesh = SubResource("BoxMesh_xjg4y")
+surface_material_override/0 = ExtResource("1_100ig")

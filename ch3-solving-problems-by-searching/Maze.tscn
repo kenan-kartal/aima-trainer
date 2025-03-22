@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bammutmix5873"]
+
+[ext_resource type="Script" uid="uid://cgj2l5yxiy7vl" path="res://ch3-solving-problems-by-searching/maze.gd" id="1_gg60v"]
+[ext_resource type="PackedScene" uid="uid://cra0jitevhs1t" path="res://ch3-solving-problems-by-searching/Cell.tscn" id="2_fqsio"]
+
+[node name="Maze" type="Node3D"]
+script = ExtResource("1_gg60v")
+cell_scene = ExtResource("2_fqsio")

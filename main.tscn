@@ -20,6 +20,10 @@ offset_bottom = 578.0
 layout_mode = 2
 text = "Chapter 2 - Intelligent Agents"
 
+[node name="Ch3Button" type="Button" parent="SceneButtonsContainer"]
+layout_mode = 2
+text = "Chapter 3 - Solving Problems by Searching"
+
 [node name="Label" type="Label" parent="."]
 offset_left = 264.0
 offset_top = 26.0
@@ -30,3 +34,4 @@ label_settings = SubResource("LabelSettings_ig7tw")
 horizontal_alignment = 1
 
 [connection signal="pressed" from="SceneButtonsContainer/Ch2Button" to="." method="_on_ch_2_button_pressed"]
+[connection signal="pressed" from="SceneButtonsContainer/Ch3Button" to="." method="_on_ch_3_button_pressed"]

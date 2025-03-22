@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcmetmjbi8cwe"]
+
+[ext_resource type="Script" uid="uid://c4irgg1p6xf81" path="res://ch3-solving-problems-by-searching/world.gd" id="1_1faka"]
+[ext_resource type="Script" uid="uid://cgj2l5yxiy7vl" path="res://ch3-solving-problems-by-searching/maze.gd" id="2_7h0xb"]
+
+[sub_resource type="Environment" id="Environment_7h0xb"]
+ambient_light_source = 3
+ambient_light_color = Color(0.65519, 0.873082, 0.25602, 1)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_1isro"]
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_1faka")
+
+[node name="BackToSceneSelectorButton" type="Button" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -193.0
+offset_top = -47.0
+offset_right = -11.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Back to Scene Selector"
+
+[node name="Maze" type="Node3D" parent="."]
+script = ExtResource("2_7h0xb")
+metadata/_custom_type_script = "uid://cgj2l5yxiy7vl"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 50, 80, 30)
+fov = 50.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7h0xb")
+camera_attributes = SubResource("CameraAttributesPractical_1isro")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.28137, 0.775297, -0.56546, 0, 0.589267, 0.807938, 0.959599, -0.22733, 0.165802, 0, 5.51139, 11.9615)
+
+[connection signal="pressed" from="BackToSceneSelectorButton" to="." method="_on_back_to_scene_selector_button_pressed"]
