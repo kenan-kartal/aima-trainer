@@ -1,13 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://dcmetmjbi8cwe"]
+[gd_scene load_steps=10 format=3 uid="uid://dcmetmjbi8cwe"]
 
 [ext_resource type="Script" uid="uid://c4irgg1p6xf81" path="res://ch3-solving-problems-by-searching/world.gd" id="1_1faka"]
 [ext_resource type="Script" uid="uid://cgj2l5yxiy7vl" path="res://ch3-solving-problems-by-searching/maze.gd" id="2_7h0xb"]
+[ext_resource type="Script" uid="uid://b47v0bhumttan" path="res://ch3-solving-problems-by-searching/textedit-int-clamp.gd" id="3_1isro"]
+[ext_resource type="Script" uid="uid://dnipmdkh2p6i0" path="res://ch3-solving-problems-by-searching/options.gd" id="3_6e3r0"]
+[ext_resource type="Script" uid="uid://c1daxfji61kq4" path="res://ch3-solving-problems-by-searching/controls.gd" id="5_6e3r0"]
+[ext_resource type="Script" uid="uid://crwofi2sqxmxl" path="res://ch3-solving-problems-by-searching/ai.gd" id="6_j8j8k"]
 
 [sub_resource type="Environment" id="Environment_7h0xb"]
 ambient_light_source = 3
 ambient_light_color = Color(0.65519, 0.873082, 0.25602, 1)
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_1isro"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7h0xb"]
+bg_color = Color(0.27451, 0.403922, 0.396078, 0.85098)
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_1faka")
@@ -41,4 +48,129 @@ camera_attributes = SubResource("CameraAttributesPractical_1isro")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.28137, 0.775297, -0.56546, 0, 0.589267, 0.807938, 0.959599, -0.22733, 0.165802, 0, 5.51139, 11.9615)
 
+[node name="Options" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 13.0
+offset_top = 14.0
+offset_right = 53.0
+offset_bottom = 54.0
+script = ExtResource("3_6e3r0")
+
+[node name="OptionsButton" type="Button" parent="Options"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Options"
+
+[node name="PanelContainer" type="PanelContainer" parent="Options"]
+layout_mode = 0
+offset_top = 35.0
+offset_right = 191.0
+offset_bottom = 229.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7h0xb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Options/PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Options/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Options/PanelContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Seed:   "
+
+[node name="Seed" type="TextEdit" parent="Options/PanelContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+text = "0"
+placeholder_text = "seed"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Options/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Options/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Start Cell:  "
+
+[node name="StartCellRow" type="TextEdit" parent="Options/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+text = "0"
+placeholder_text = "row"
+script = ExtResource("3_1isro")
+max = 29
+
+[node name="StartCellCol" type="TextEdit" parent="Options/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+text = "0"
+placeholder_text = "col"
+script = ExtResource("3_1isro")
+max = 49
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Options/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Options/PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Finish Cell:"
+
+[node name="FinishCellRow" type="TextEdit" parent="Options/PanelContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+text = "29"
+placeholder_text = "row"
+script = ExtResource("3_1isro")
+max = 29
+
+[node name="FinishCellCol" type="TextEdit" parent="Options/PanelContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+text = "49"
+placeholder_text = "col"
+script = ExtResource("3_1isro")
+max = 49
+
+[node name="Label" type="Label" parent="Options/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Search Type"
+
+[node name="SearchTypesList" type="ItemList" parent="Options/PanelContainer/VBoxContainer"]
+layout_mode = 2
+auto_width = true
+auto_height = true
+item_count = 1
+item_0/text = "Breadth-first"
+
+[node name="Controls" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -47.0
+offset_top = 9.0
+offset_right = -7.0
+offset_bottom = 49.0
+grow_horizontal = 2
+script = ExtResource("5_6e3r0")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Controls"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StartButton" type="Button" parent="Controls/HBoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="StopButton" type="Button" parent="Controls/HBoxContainer"]
+layout_mode = 2
+text = "Stop"
+
+[node name="AI" type="Node3D" parent="."]
+script = ExtResource("6_j8j8k")
+
 [connection signal="pressed" from="BackToSceneSelectorButton" to="." method="_on_back_to_scene_selector_button_pressed"]
+[connection signal="pressed" from="Controls/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Controls/HBoxContainer/StopButton" to="." method="_on_stop_button_pressed"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cra0jitevhs1t"]
 
-[ext_resource type="Script" uid="uid://bg87qsgudxkdo" path="res://ch3-solving-problems-by-searching/cell.gd" id="1_ytacg"]
+[ext_resource type="Script" uid="uid://cqyn5ptv847b5" path="res://ch3-solving-problems-by-searching/cell.gd" id="1_ytacg"]
 [ext_resource type="Material" uid="uid://te2v11j4fwbw" path="res://materials/white.tres" id="2_208yn"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rh4xm"]
