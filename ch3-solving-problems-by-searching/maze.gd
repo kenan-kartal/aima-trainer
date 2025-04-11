@@ -4,6 +4,7 @@ extends Node3D
 
 const ROW := 30
 const COL := 50
+const WALL_REMOVE_CHANCE := 0.3
 
 class MazeCell:
 	var cell: Ch3Cell
@@ -156,6 +157,16 @@ func generate(seed: int) -> void:
 				set_wall_horizontal(maze_wall.i, maze_wall.j, null)
 			else:
 				set_wall_vertical(maze_wall.i, maze_wall.j, null)
+	for i in range(1, ROW):
+		for j in range(1, COL):
+			var wall := get_wall_horizontal(i, j)
+			if wall && rng.randf() < WALL_REMOVE_CHANCE:
+				remove_child(wall.wall)
+				set_wall_horizontal(i, j, null)
+			wall = get_wall_vertical(i, j)
+			if wall && rng.randf() < WALL_REMOVE_CHANCE:
+				remove_child(wall.wall)
+				set_wall_vertical(i, j, null)
 
 func _init() -> void:
 	maze_cells.resize(ROW*COL)
