@@ -17,7 +17,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if !is_running:
 		return
-	curr_delay_time += delay_time
+	curr_delay_time += delta
 	if curr_delay_time >= delay_time:
 		curr_delay_time = 0.0
 		if ai.search_step():
