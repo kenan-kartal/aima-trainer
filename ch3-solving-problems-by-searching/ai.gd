@@ -9,6 +9,8 @@ func init_search(search_type: int, init_cell: Ch3Maze.MazeCell, goal_cell: Ch3Ma
 			ai_engine = Ch3AI_BFS.new()
 		1:
 			ai_engine = Ch3AI_DFS.new()
+		2:
+			ai_engine = Ch3AI_AStar.new()
 	ai_engine.init_search(init_cell, goal_cell, maze)
 
 func search_step() -> bool:
