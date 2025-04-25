@@ -28,6 +28,7 @@ func _on_back_to_scene_selector_button_pressed() -> void:
 
 func _on_start_button_pressed() -> void:
 	opts = options.get_options_data()
+	delay_time = opts.time_step
 	if opts.start_row == opts.finish_row && opts.start_col == opts.finish_col:
 		return
 	maze.generate(opts.seed)

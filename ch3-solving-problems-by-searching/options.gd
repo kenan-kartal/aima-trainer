@@ -7,6 +7,7 @@ class OptionsData:
 	var finish_row: int
 	var finish_col: int
 	var search_type: int
+	var time_step: float
 
 @onready var panel := $PanelContainer
 @onready var panel_button := $OptionsButton
@@ -16,6 +17,7 @@ class OptionsData:
 @onready var finish_row := $PanelContainer/VBoxContainer/HBoxContainer2/FinishCellRow
 @onready var finish_col := $PanelContainer/VBoxContainer/HBoxContainer2/FinishCellCol
 @onready var search_type := $PanelContainer/VBoxContainer/SearchTypesList
+@onready var time_step := $PanelContainer/VBoxContainer/HBoxContainer4/TimeStep
 
 func _ready() -> void:
 	panel_button.pressed.connect(toggle_panel)
@@ -37,4 +39,5 @@ func get_options_data() -> OptionsData:
 	data.finish_row = finish_row.text.to_int()
 	data.finish_col = finish_col.text.to_int()
 	data.search_type = search_type.get_selected_items()[0]
+	data.time_step = time_step.text.to_float()
 	return data

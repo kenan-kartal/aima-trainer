@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dcmetmjbi8cwe"]
+[gd_scene load_steps=11 format=3 uid="uid://dcmetmjbi8cwe"]
 
 [ext_resource type="Script" uid="uid://c4irgg1p6xf81" path="res://ch3-solving-problems-by-searching/world.gd" id="1_1faka"]
 [ext_resource type="Script" uid="uid://cgj2l5yxiy7vl" path="res://ch3-solving-problems-by-searching/maze.gd" id="2_7h0xb"]
 [ext_resource type="Script" uid="uid://b47v0bhumttan" path="res://ch3-solving-problems-by-searching/textedit-int-clamp.gd" id="3_1isro"]
 [ext_resource type="Script" uid="uid://dnipmdkh2p6i0" path="res://ch3-solving-problems-by-searching/options.gd" id="3_6e3r0"]
 [ext_resource type="Script" uid="uid://c1daxfji61kq4" path="res://ch3-solving-problems-by-searching/controls.gd" id="5_6e3r0"]
+[ext_resource type="Script" uid="uid://jibabr6fav1i" path="res://ch3-solving-problems-by-searching/textedit-float.gd" id="5_kutpf"]
 [ext_resource type="Script" uid="uid://dpksufh41ybu6" path="res://ch3-solving-problems-by-searching/ai.gd" id="6_j8j8k"]
 
 [sub_resource type="Environment" id="Environment_7h0xb"]
@@ -131,6 +132,20 @@ text = "49"
 placeholder_text = "col"
 script = ExtResource("3_1isro")
 max = 49
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Options/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Options/PanelContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Time Step:"
+
+[node name="TimeStep" type="TextEdit" parent="Options/PanelContainer/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(85, 40)
+layout_mode = 2
+text = "0.1"
+placeholder_text = "seconds"
+script = ExtResource("5_kutpf")
 
 [node name="Label" type="Label" parent="Options/PanelContainer/VBoxContainer"]
 layout_mode = 2
