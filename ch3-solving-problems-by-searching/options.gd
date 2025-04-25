@@ -5,7 +5,7 @@ class OptionsData:
 	var start_row: int
 	var start_col: int
 	var finish_row: int
-	var finish_col: int;;
+	var finish_col: int
 	var search_type: int
 
 @onready var panel := $PanelContainer

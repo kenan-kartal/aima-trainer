@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://b47v0bhumttan" path="res://ch3-solving-problems-by-searching/textedit-int-clamp.gd" id="3_1isro"]
 [ext_resource type="Script" uid="uid://dnipmdkh2p6i0" path="res://ch3-solving-problems-by-searching/options.gd" id="3_6e3r0"]
 [ext_resource type="Script" uid="uid://c1daxfji61kq4" path="res://ch3-solving-problems-by-searching/controls.gd" id="5_6e3r0"]
-[ext_resource type="Script" uid="uid://crwofi2sqxmxl" path="res://ch3-solving-problems-by-searching/ai.gd" id="6_j8j8k"]
+[ext_resource type="Script" uid="uid://dpksufh41ybu6" path="res://ch3-solving-problems-by-searching/ai.gd" id="6_j8j8k"]
 
 [sub_resource type="Environment" id="Environment_7h0xb"]
 ambient_light_source = 3
@@ -140,8 +140,9 @@ text = "Search Type"
 layout_mode = 2
 auto_width = true
 auto_height = true
-item_count = 1
+item_count = 2
 item_0/text = "Breadth-first"
+item_1/text = "Depth-first"
 
 [node name="Controls" type="Control" parent="."]
 layout_mode = 3

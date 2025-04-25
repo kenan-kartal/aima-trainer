@@ -3,7 +3,7 @@ class_name Ch3World
 extends Node3D
 
 var is_running := false
-var delay_time := 0.5
+var delay_time := 0.02
 var curr_delay_time := 0.0
 var opts
 
@@ -32,6 +32,7 @@ func _on_start_button_pressed() -> void:
 		return
 	maze.generate(opts.seed)
 	ai.init_search(
+		opts.search_type,
 		maze.get_cell(opts.start_row, opts.start_col),
 		maze.get_cell(opts.finish_row, opts.finish_col),
 		maze
